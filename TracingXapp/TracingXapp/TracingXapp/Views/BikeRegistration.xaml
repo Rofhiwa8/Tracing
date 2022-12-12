@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              Title="Bike Registration"
+             x:Class="TracingXapp.Views.BikeRegistration">
+    <ScrollView>
+        <Grid RowDefinitions="*,*">
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Bike Registration" FontSize="34" Margin="0,50, 0,0" HorizontalTextAlignment="Center"/>
+                <Label Text="Add Bikes details to register" FontSize="20" HorizontalTextAlignment="Center"/>
+
+                <Frame CornerRadius="30" 
+                       Margin="0, 15, 0, 0"
+                       BackgroundColor="#F2F2F2"
+                       HasShadow="False"
+                       WidthRequest="350"
+                       HeightRequest="20">
+
+                    <DatePicker x:Name="DateCreated"
+                                Format="D"
+                                Margin="0, -30, 0, -30"/>
+                </Frame>
+
+                <Frame CornerRadius="30" 
+                       Margin="0, 15, 0, 0"
+                       BackgroundColor="#F2F2F2"
+                       HasShadow="False"
+                       WidthRequest="350"
+                       HeightRequest="20">
+
+                    <Entry x:Name="battery"
+                           HorizontalTextAlignment="Start"
+                           Placeholder="Battery Type"
+                           Margin="0, -30, 0, -30"/>
+                </Frame>
+                <Frame CornerRadius="30" 
+                       Margin="0, 15, 0, 0"
+                       BackgroundColor="#F2F2F2"
+                       HasShadow="False"
+                       WidthRequest="350"
+                       HeightRequest="20">
+
+                    <Entry x:Name="motor" HorizontalTextAlignment="Start"
+                           Placeholder="Motor Name"
+                           Margin="0, -30, 0, -30"/>
+                </Frame>
+                <Frame CornerRadius="30" 
+                       Margin="0, 15, 0, 0" 
+                       BackgroundColor="#F2F2F2"
+                       HasShadow="False"
+                       WidthRequest="350"
+                       HeightRequest="20">
+
+                    <Entry x:Name="gear"
+                        HorizontalTextAlignment="Start"
+                           Placeholder="Gear System"
+                           Margin="0, -30, 0, -30"/>
+                </Frame>
+
+                <Button Text="Register"
+                        WidthRequest="280" 
+                        HeightRequest="55" 
+                        CornerRadius="440" 
+                        BackgroundColor="#FF8033" 
+                        HorizontalOptions="Center" 
+                        Margin="0,15, 0, 0"
+                        Clicked="HandleBikeRegistration"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

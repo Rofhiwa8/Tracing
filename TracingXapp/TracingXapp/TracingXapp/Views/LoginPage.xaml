@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TracingXapp.Views.LoginPage"
+             NavigationPage.HasNavigationBar="True"
+             Visual="Material">
+    
+    <ScrollView>
+        <Grid RowDefinitions="*,*">
+            <StackLayout  HorizontalOptions="Center">
+                <Label Text="Login" FontSize="34" Margin="0,50, 0,0" HorizontalTextAlignment="Center"/>
+                <Label Text="Add your details to login" FontSize="20" HorizontalTextAlignment="Center"/>
+
+                <Frame CornerRadius="30" 
+                       Margin="0, 40, 10, 0" 
+                       BackgroundColor="#F2F2F2"
+                       HasShadow="False"
+                       WidthRequest="350"
+                       HeightRequest="20">
+
+                    <Entry x:Name="Email" HorizontalTextAlignment="Start"
+                           Placeholder="user@example.com"
+                           Margin="0, -30, 0, -30"/>
+                </Frame>
+                <Frame CornerRadius="30" 
+                       Margin="0, 15, 0, 0" 
+                       BackgroundColor="#F2F2F2"
+                       HasShadow="False"
+                       WidthRequest="350"
+                       HeightRequest="20">
+
+                    <Entry x:Name="Password" HorizontalTextAlignment="Start"
+                           IsPassword="True"
+                           Placeholder="Password"
+                           Margin="0, -30, 0, -30"/>
+                </Frame>
+                <Label x:Name="LoginError" TextColor="Red" />
+
+                <Button Text="Login"
+                        WidthRequest="280" 
+                        HeightRequest="55" 
+                        CornerRadius="440" 
+                        BackgroundColor="#FF8033" 
+                        HorizontalOptions="Center" 
+                        Margin="0,15, 0, 0"
+                        Clicked="HandleLogin"/>
+                
+                <Button Text="Forgot your password?" Background="white"/>
+                <Button Text="Sign Up new account" Background="white" Clicked="Button_Clicked"/>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
