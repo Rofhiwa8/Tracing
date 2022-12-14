@@ -30,17 +30,18 @@ namespace TracingXapp.Views
                 Email= EntryEmail.Text,
                 Password = Password.Text,
                 ConfirmPassword = ConfirmPassword.Text,
+                
             };
 
-            ValidateEmailAddress();
+         //   ValidateEmailAddress();
 
             var getRegistration = await client.ApiAuthenticationRegisterAsync(register);
 
             if (getRegistration.Success == true) 
             {
-                var message = new EmailMessage("Registration validation", "Your registeration is complete!", "devplatform01@gmail.com");
+             //   var message = new EmailMessage("Registration validation", "Your registeration is complete!", "devplatform01@gmail.com");
                 //message.To = EntryEmail.Text;
-                await Email.ComposeAsync(message);
+             //   await Email.ComposeAsync(message);
 
                 await Navigation.PushAsync(new LoginPage());
             } 

@@ -27,24 +27,26 @@ namespace TracingXapp.Views
 			owner = new OwnerDto();
 			components = new ComponentsDto();
 			BikeDtobike = new BikeDto();
-		}
 
+			
+		}
+		
 		public async void HandleBikeRegistration(object sender, EventArgs e)
 		{
-
-			var ownerId = owner.OwnerId;
+	
+			var ownerId = App.Current.Properties["IsLogged"].ToString();
 			var CompId = components.CompId;
-			var bikeId = BikeDtobike.BikeId;
+			var bikeId = Guid.NewGuid().ToString();
 
 			List<BikeComponentsDto> componentsCollection = new List<BikeComponentsDto>()
 			{
-				new BikeComponentsDto { CompId = Guid.NewGuid(), ComponentName = battery.Text, 
+				new BikeComponentsDto { CompId = Guid.NewGuid().ToString(), ComponentName = battery.Text, 
 				CreatedDate = DateCreated.Date},
 
-				new BikeComponentsDto { CompId = Guid.NewGuid(), ComponentName = motor.Text, 
+				new BikeComponentsDto { CompId = Guid.NewGuid().ToString(), ComponentName = motor.Text, 
 				CreatedDate = DateCreated.Date},
 
-				new BikeComponentsDto { CompId = Guid.NewGuid(), ComponentName = gear.Text, 
+				new BikeComponentsDto { CompId = Guid.NewGuid().ToString(), ComponentName = gear.Text, 
 				CreatedDate = DateCreated.Date},
             };
 
@@ -60,7 +62,11 @@ namespace TracingXapp.Views
 			if (getBikeRegistration.BikeResponse1 != "Something when wrong") 
 			{
 				// await Navigation.PushAsync(new MenuPage());
-				App.Current.MainPage.DisplayAlert("Notification", "Could not register", "OK");
+				App.Current.MainPage.DisplayAlert("Notification", "registered", "OK");
+            }
+			else
+			{
+                App.Current.MainPage.DisplayAlert("Notification", "Could not register", "OK");
             }
         }
     }

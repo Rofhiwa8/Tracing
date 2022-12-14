@@ -26,9 +26,11 @@ namespace TracingXapp.Views
 
 			var getLogin = await client.ApiAuthenticationLoginAsync(owner);
 			
-			if(getLogin.Token != "Wrong Credentials! Please check your username or password")
+			if(getLogin.ReturnMessage.ToLower() == "suceess")
 			{
-                App.Current.Properties["IsLogged"] = getLogin;
+                App.Current.Properties["IsLogged"] = getLogin.OwnerId;
+                App.Current.Properties["token"] = getLogin.Token;
+               
                 //  await Navigation.PushAsync(new MenuPage());
 
                 App.Current.MainPage = new AppShell();

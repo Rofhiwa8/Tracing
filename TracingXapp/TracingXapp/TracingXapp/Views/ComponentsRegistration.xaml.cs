@@ -19,14 +19,29 @@ namespace TracingXapp.Views
         public ComponentsRegistration()
         {
             InitializeComponent();
-            client = new Client(); 
-        }
 
+            client = new Client();
+
+            //i was trying to autofill the name and surname part, but the issue is that the method gives me could not deserilized response
+       //     getUser();
+        }
+        private async void getUser()
+        {
+            var ownertoken = App.Current.Properties["token"].ToString();
+            var getUserInfo = await client.ApiAuthenticationVerifyAsync(ownertoken);
+            if (getUserInfo != null)
+            {
+                OwnerName.Text = getUserInfo.Name;
+                surname.Text = getUserInfo.Surname;
+                email.Text = getUserInfo.Email;
+            }
+        }
         private async void CompRegister(object sender, EventArgs e)
         {
+            string id = App.Current.Properties["IsLogged"].ToString();
             OwnerDto owner = new OwnerDto()
             {
-                OwnerId = Guid.NewGuid(), // need to fetch the owner from the decoded qr code 
+                OwnerId =id, // need to fetch the owner from the decoded qr code 
                 Name = OwnerName.Text,
                 Surname = surname.Text,
                 Email = email.Text,
@@ -38,15 +53,17 @@ namespace TracingXapp.Views
             {
                 var ComponentsReg = new AddComponentsDto
                 {
-                    CompId = Guid.NewGuid(),
+                    CompId = Guid.NewGuid().ToString(),
                     ComponentName = name.Text,
                     Owner = owner,
                     OwnerId = owner.OwnerId,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    
                 };
 
 
                 var comRes = await client.ApiComponentsPostAsync(ComponentsReg);
+
 
                 if (comRes != null)
                 {
@@ -54,7 +71,7 @@ namespace TracingXapp.Views
                     await App.Current.MainPage.DisplayAlert("Notification", "Succesfully Registered component", "OK");
                 }
 
-                if (comRes != null) 
+                else
                 {
                     //   Navigation.PushAsync(new MenuPage());
                     await App.Current.MainPage.DisplayAlert("Notification", "unsuccesfully", "OK");
